@@ -1,0 +1,12 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}<link rel="stylesheet" href="{{ STATIC_URL }}cmsplugin_filer_html5video/css/video-js.css" />{% endaddtoblock %}
+{% addtoblock "js" %}
+	<script type="text/javascript" src="{{ STATIC_URL }}cmsplugin_filer_html5video/js/video.js"></script>{% endaddtoblock %}
+
+<video id="videojs_plugin_{{ object.pk }}" class="video-js vjs-default-skin" controls
+       preload="auto" width="{{ object.width }}" height="{{ object.height }}" poster="{{ object.image.url }}"
+       data-setup="{}">
+	{% for format, url in formats.items %}
+		<source src="{{ url }}" type='{{ format }}'>
+	{% endfor %}
+</video>
